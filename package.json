@@ -1,0 +1,19 @@
+{
+  "name": "wled-client-examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "example:node": "node ./examples/node/index",
+    "example:ts": "ts-node ./examples/typescript/index"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.8",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "wled-client": "^0.12.0-0.3"
+  }
+}
