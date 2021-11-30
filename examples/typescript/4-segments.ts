@@ -1,5 +1,5 @@
 import { WLEDClient, WLEDClientSegment } from 'wled-client'
-import { sleep } from './common'
+import { setInitialState, sleep } from './common'
 
 async function init() {
 	console.log(`Running segments example on device ${ process.env.WLED_DEVICE_HOST }...`)
@@ -7,12 +7,12 @@ async function init() {
 	const wled = new WLEDClient(process.env.WLED_DEVICE_HOST!)
 	await wled.isReady
 	console.log(`Device ready: version ${wled.info.version}`)
-	const max_segments = wled.info.leds.maxSegments
-	const n_leds = wled.info.leds.count
-	const n_effects = wled.info.effectsCount
+	const max_segments = wled.info.leds.maxSegments!
+	const n_leds = wled.info.leds.count!
+	const n_effects = wled.info.effectsCount!
 
 	console.log('Clearing all segments...')
-	await wled.clearSegments()
+	await setInitialState(wled)
 	await sleep(2000)
 
 	let effectId = Math.round(Math.random() * n_effects)
@@ -33,6 +33,19 @@ async function init() {
 	console.log(`Updating first segment to new effect ${ wled.effects[effectId] }`)
 	await wled.updateSegment(0, { effectId })
 
+	await sleep(2000)
+
+	effectId = Math.round(Math.random() * n_effects)
+	console.log(`Creating a new second segment spanning half the strip with effect ${ wled.effects[effectId] }...`)
+	await wled.createSegment({ start: Math.floor(n_leds/2), stop: n_leds, brightness: 255, effectId })
+	await sleep(2000)
+
+	// Methods can now target a specific segment
+	console.log('Toggling only the second segment.')
+	wled.toggle({ segmentId: 1 })
+	await sleep(2000)
+	wled.toggle({ segmentId: 1 })
+	await sleep(2000)
 
 	console.log('Creating random segments...')
 

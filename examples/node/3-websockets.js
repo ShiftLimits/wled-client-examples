@@ -11,12 +11,12 @@ async function init() {
 		console.log('WLED State Updated')
 	})
 
-	wled.on('live', ({ leds, n }) => {
+	wled.on('live:leds', ({ leds, n }) => {
 		console.log('Got live event. LED count:', leds.length)
 	})
 
 	console.log('Starting live stream')
-	await wled.startLiveStream()
+	await wled.startLEDStream()
 
 	console.log('Setting initial state...')
 	await setInitialState(wled)
@@ -26,7 +26,7 @@ async function init() {
 	await sleep(2500)
 
 	console.log('Stopping live stream')
-	await wled.stopLiveStream()
+	await wled.stopLEDStream()
 
 	await sleep(1000)
 	console.log('Disconnecting from WebSocket...')
