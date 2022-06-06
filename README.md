@@ -18,10 +18,16 @@ First you need to tell the examples where your device is located. Create a file 
 WLED_DEVICE_HOST=<YOUR DEVICE IP>
 ```
 
-Or you can rename and edit the `.env.example` file. Next, run a command using the structure `npm run example:<node|ts> [example-name]` where `node|ts` is either `node` for Node.js or `ts` for TypeScript respectively. For example to run the basic Node.js example, use the command:
+Or you can rename and edit the `.env.example` file. Next, run a command using the structure `npm run example:<node|ts> [example]` where `node|ts` is either `node` for Node.js or `ts` for TypeScript respectively. For example to run the basic Node.js example, use the command:
 
 ```bash
 $ npm run example:node 1-basic
+```
+
+Or to simplify, you only have to use the example number:
+
+```bash
+$ npm run example:node 6
 ```
 
 ## Examples
