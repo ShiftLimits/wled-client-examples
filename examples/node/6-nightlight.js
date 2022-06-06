@@ -5,7 +5,7 @@ async function init() {
 	console.log(`Running nightlight example on device ${ process.env.WLED_DEVICE_HOST }...`)
 
 	const wled = new WLEDClient(process.env.WLED_DEVICE_HOST)
-	await wled.isReady
+	await wled.init()
 	console.log(`Device ready: version ${wled.info.version}`)
 
 	console.log('Setting initial state...')

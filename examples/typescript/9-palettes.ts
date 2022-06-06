@@ -4,7 +4,7 @@ async function init() {
 	console.log(`Running palette example on device ${ process.env.WLED_DEVICE_HOST }...`)
 
 	const wled = new WLEDClient(process.env.WLED_DEVICE_HOST!)
-	await wled.isReady
+	await wled.init()
 
 	let page_2 = await wled.getPalettesData(2)
 	console.log(`Got page 2 data. IDs: ${Object.keys(page_2)}`)

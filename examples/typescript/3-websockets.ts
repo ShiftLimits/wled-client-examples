@@ -5,14 +5,14 @@ async function init() {
 	console.log(`Running WebSockets example on device ${ process.env.WLED_DEVICE_HOST }...`)
 
 	const wled = new WLEDClient(process.env.WLED_DEVICE_HOST!)
-	await wled.isReady
+	await wled.init()
 
 	wled.on('update:state', () => {
 		console.log('WLED State Updated')
 	})
 
-	wled.on('live:leds', ({ leds, n }) => {
-		console.log('Got live event. LED count:', leds.length)
+	wled.on('live:leds', (leds) => {
+		console.log('Got live LEDs event. LED count:', leds.length)
 	})
 
 	console.log('Starting live stream')
@@ -52,18 +52,19 @@ async function init() {
 		host: process.env.WLED_DEVICE_HOST!,
 		websocket: false
 	})
-	await wled_json.isReady
+
+	await wled_json.init()
 	console.log(`Device ready: version ${wled_json.info.version}`)
 
 	console.log('Re-setting state...')
 	await setInitialState(wled)
 
-	await sleep(1000)
+	// await sleep(1000)
 
-	console.log('Running toggle example...')
-	await toggleExample(wled_json)
+	// console.log('Running toggle example...')
+	// await toggleExample(wled_json)
 
-	await sleep(1000)
+	// await sleep(1000)
 
 	wled.disconnect()
 }

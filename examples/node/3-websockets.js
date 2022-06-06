@@ -5,7 +5,7 @@ async function init() {
 	console.log(`Running WebSockets example on device ${ process.env.WLED_DEVICE_HOST }...`)
 
 	const wled = new WLEDClient(process.env.WLED_DEVICE_HOST)
-	await wled.isReady
+	await wled.init()
 
 	wled.on('update:state', () => {
 		console.log('WLED State Updated')
@@ -52,7 +52,7 @@ async function init() {
 		host: process.env.WLED_DEVICE_HOST,
 		websocket: false
 	})
-	await wled_json.isReady
+	await wled_json.init()
 	console.log(`Device ready: version ${wled_json.info.version}`)
 
 	console.log('Re-setting state...')

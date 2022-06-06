@@ -7,9 +7,9 @@ async function init() {
 	wled.on('error', e => console.log('Error event', e))
 
 	try {
-		await wled.isReady
+		await wled.init()
 	} catch(e) {
-		console.log(`Caught rejected 'isReady' promise.`)
+		console.log(`Caught rejected 'init' promise.`)
 	}
 }
 
