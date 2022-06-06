@@ -53,3 +53,12 @@ Demonstrates the nightlight feature over a 1 minute period.
 
 ### 7-presets
 Demonstrates presets manipulation by creating and swapping presets around.
+
+### 8-errors
+Demonstrates how to handle errors.
+
+### 9-palettes
+Demonstrates how get and set color palettes.
+
+### 10-lighting-capabilities
+Demonstrates how get the light capabilities of the device, such as whether it supports RGB, White, and/or CCT.
